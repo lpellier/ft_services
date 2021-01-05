@@ -1,6 +1,6 @@
 FROM	alpine
 
-VOLUME [ "/sys/fs/cgroup" ]
+VOLUME 	[ "/sys/fs/cgroup" ]
 
 RUN		apk update && apk upgrade
 RUN		apk add nginx openrc openssl openssh --no-cache
