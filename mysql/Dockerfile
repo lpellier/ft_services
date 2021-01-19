@@ -14,7 +14,8 @@ COPY	srcs /home/www/
 
 RUN		rc-service mariadb setup
 RUN		rc-service mariadb restart && mysql -u root < "/home/www/mysql_secure_installation.sql"
-
-RUN		rc-service mariadb restart
+RUN 	cp -f /home/www/my.cnf /etc/my.cnf
 
 EXPOSE	3306
+
+CMD 	mysqld -u root
