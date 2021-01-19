@@ -24,4 +24,4 @@ RUN		nginx -t
 
 EXPOSE 	80 443
 
-CMD		rc-service sshd restart && nginx -g "daemon off;"
+# CMD		rc-service sshd restart && nginx -g "daemon off;"

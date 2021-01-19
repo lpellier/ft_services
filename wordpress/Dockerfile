@@ -25,9 +25,10 @@ RUN		rc-service php-fpm7 restart
 
 RUN		curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN		chmod +x /wp-cli.phar && mv /wp-cli.phar /usr/local/bin/wp
-# RUN		cd /home/www && wp core download --allow-root
 
 EXPOSE	5050 9000
+
+CMD 	sh /home/www/wp-setup.sh
 
 # CMD		nginx -g "daemon off;"
 
