@@ -12,10 +12,11 @@ RUN		rc-update add mariadb default
 
 COPY	srcs /home/www/
 
-RUN		rc-service mariadb setup
-RUN		rc-service mariadb restart && mysql -u root < "/home/www/mysql_secure_installation.sql"
-RUN 	cp -f /home/www/my.cnf /etc/my.cnf
+RUN 	mysql_install_db --user=root --datadir=/var/lib/mysql
+RUN 	cp -f /home/www/my.cnf /etc/mysql/my.cnf
+
+RUN		rc-service mariadb start && mysql -u root < "/home/www/mysql_secure_installation.sql"
 
 EXPOSE	3306
 
-CMD 	mysqld -u root
+CMD 	/usr/bin/mysqld_safe --defaults-file=/etc/mysql/my.cnf --console & wait

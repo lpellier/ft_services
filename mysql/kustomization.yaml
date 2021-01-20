@@ -7,6 +7,6 @@ secretGenerator:
   - password=pass
 
 resources:
- - service.yaml
  - volume.yaml
+ - service.yaml
  - deployment.yaml

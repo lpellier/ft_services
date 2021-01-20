@@ -18,12 +18,6 @@ spec:
   spec:
    containers:
     - name: mysql
-      env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-pass
-              key: password
       image: mysql
       imagePullPolicy: Never
       ports:
