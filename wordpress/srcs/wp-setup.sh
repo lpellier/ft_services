@@ -13,7 +13,7 @@ wp config create \
 --allow-root
 
 wp core install \
---url=127.0.0.1:5050 \
+--url=192.168.49.2:30050 \
 --title=Example \
 --admin_user=wp \
 --admin_password=pass \
@@ -22,5 +22,5 @@ wp core install \
 --allow-root
 
 chown -R www:www /home/www/wordpress
-
+chown -R www:www /home/www/nginx
 rc-service php-fpm7 restart && nginx -g "daemon off;"
