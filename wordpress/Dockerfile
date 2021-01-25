@@ -9,7 +9,7 @@ RUN		apk add nginx openrc \
 		php7-gd php7-curl php7-xml php7-mysqli php7-imap \
 		php7-cgi fcgi php7-pdo php7-pdo_mysql php7-soap php7-phar \
 		php7-xmlrpc php7-posix php7-mcrypt php7-gettext php7-zlib \
-		php7-ldap php7-ctype php7-dom curl php7-opcache --no-cache
+		php7-ldap php7-ctype php7-dom curl php7-opcache mysql-client --no-cache
 
 RUN		adduser -D -g 'www' -h /home/www www
 RUN		mkdir /home/www/db
@@ -52,8 +52,6 @@ RUN		chmod +x /wp-cli.phar && mv /wp-cli.phar /usr/local/bin/wp
 EXPOSE	5050 9000
 
 CMD 	sh /home/www/wp-setup.sh
-
-# CMD		nginx -g "daemon off;"
 
 # CURRENTLY NOT WORKING - NEEDS TO BE CONNECTED TO MYSQL DATABASE
 # NEED TO START NGINX AND PHP AS CMD -- nginx -g "daemon off;"
