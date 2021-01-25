@@ -13,10 +13,10 @@ wp config create \
 --allow-root
 
 wp core install \
---url=192.168.49.2:30050 \
+--url=127.0.0.1:5050 \
 --title=Example \
 --admin_user=wp \
---admin_password=$WORDPRESS_DB_PASSWORD \
+--admin_password=pass \
 --admin_email=info@example.com \
 --path=/home/www/wordpress/ \
 --allow-root

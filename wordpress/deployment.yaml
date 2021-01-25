@@ -32,6 +32,8 @@ spec:
        - name: wp-port
          containerPort: 5050
          protocol: TCP
+       - name: php-port
+         containerPort: 9000
   #     volumeMounts:
   #      - name: wordpress-persistent-storage
   #        mountPath: /home/www/db

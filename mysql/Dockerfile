@@ -10,13 +10,14 @@ RUN		adduser -D -g 'www' -h /home/www www
 
 RUN		rc-update add mariadb default
 
-COPY	srcs /home/www/
+ADD		./srcs/mysql_secure_installation.sql /home/www/
+ADD		./srcs/my.cnf /etc/my.cnf
+ADD		./srcs/my.cnf /etc/mysql/my.cnf
 
-RUN 	mysql_install_db --user=root --datadir=/var/lib/mysql
-RUN 	cp -f /home/www/my.cnf /etc/mysql/my.cnf
+RUN 	mysql_install_db --user=root
 
 RUN		rc-service mariadb start && mysql -u root < "/home/www/mysql_secure_installation.sql"
 
 EXPOSE	3306
 
-CMD 	/usr/bin/mysqld_safe --defaults-file=/etc/mysql/my.cnf --console & wait
+CMD 	/usr/bin/mysqld_safe --console & wait
