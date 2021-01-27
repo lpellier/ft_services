@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: pma-deployment
+ labels:
+  app: services
+  svc: phpmyadmin
+spec:
+ selector:
+  matchLabels:
+   app: services
+   svc: phpmyadmin
+ template:
+  metadata:
+   labels:
+    app: services
+    svc: phpmyadmin
+  spec:
+   containers:
+    - name: phpmyadmin
+      image: phpmyadmin
+      imagePullPolicy: Never
+      ports:
+       - name: pma-port
+         containerPort: 5000
+         protocol: TCP
+  #     volumeMounts:
+  #      - name: wordpress-persistent-storage
+  #        mountPath: /home/www/db
+  #  volumes:
+  #   - name: wordpress-persistent-storage
+  #     persistentVolumeClaim:
+  #      claimName: wp-pv-claim

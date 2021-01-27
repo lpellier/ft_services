@@ -12,7 +12,6 @@ RUN		apk add nginx openrc \
 		php7-ldap php7-ctype php7-dom curl php7-opcache mysql-client --no-cache
 
 RUN		adduser -D -g 'www' -h /home/www www
-RUN		mkdir /home/www/db
 
 RUN sed -i "s|;listen.owner\s*=\s*nobody|listen.owner = www|g" /etc/php7/php-fpm.d/www.conf
 RUN sed -i "s|;listen.group\s*=\s*nobody|listen.group = www|g" /etc/php7/php-fpm.d/www.conf
