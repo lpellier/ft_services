@@ -4,6 +4,8 @@ mkdir /home/www/wordpress
 
 wp core download --path=/home/www/wordpress --allow-root
 
+sleep 5
+
 wp config create \
 --dbname=wordpress \
 --dbuser=wp \
