@@ -19,14 +19,11 @@ COPY 	srcs /home/www
 RUN		cp /home/www/nginx.conf /etc/nginx/
 RUN		chown -R www:www /etc/nginx
 
-#RUN   wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz
-#RUN   tar zxvf phpMyAdmin-5.0.4-all-languages.tar.gz
-#RUN   rm phpMyAdmin-5.0.4-all-languages.tar.gz
-#RUN   mv phpMyAdmin-5.0.4-all-languages phpmyadmin
-#RUN   mv phpmyadmin /home/www/
 RUN		cp -f /home/www/config.inc.php /etc/phpmyadmin/
 RUN 	chown -R www:www /etc/phpmyadmin
-
+#RUN chown -R www:www /usr/share/webapps/phpmyadmin
+RUN mkdir /usr/share/webapps/phpmyadmin/tmp
+RUN 	chmod 777 /usr/share/webapps/phpmyadmin/tmp
 
 RUN   openrc && touch /run/openrc/softlevel
 

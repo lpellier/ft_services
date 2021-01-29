@@ -14,13 +14,14 @@ $i = 0;
 $i++;
 
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
-
 $cfg['Servers'][$i]['host'] = 'mysql';
-$cfg['Servers'][$i]['compress'] = false;
-$cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Servers'][$i]['port'] = 3306;
 
-$cfg['TempDir'] = '/var/www/config_domain/phpmyadmin/tmp';
+$cfg['Servers'][$i]['compress'] = false;
+
+$cfg['PmaAbsoluteUri'] = 'http://192.168.49.2/phpmyadmin/';
+
+$cfg['TempDir'] = '/usr/share/webapps/phpmyadmin/tmp';
 
 $cfg['UploadDir'] = '';
-$cfg['SaveDir'] = '';// $cfg['Servers'][$i]['AllowNoPassword'] = true;
-// $cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['SaveDir'] = '';
