@@ -1,12 +1,30 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+ name: wp-volume
+ labels:
+  svc: wordpress
+  app: services
+spec:
+ storageClassName: wordpress
+ capacity:
+  storage: 1Gi
+ accessModes:
+  - ReadWriteMany
+ hostPath:
+  path: "/mnt/wordpress"
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wp-pv-claim
-  labels:
-    svc: wordpress
+ name: wp-claim
+ labels:
+  svc: wordpress
+  app: services
 spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+ storageClassName: wordpress
+ accessModes:
+  - ReadWriteMany
+ resources:
+  requests:
+   storage: 1Gi

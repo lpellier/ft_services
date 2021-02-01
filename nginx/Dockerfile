@@ -13,14 +13,10 @@ RUN		mkdir -p /etc/ssl/certs && mkdir -p /etc/ssl/private \
 		/etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt
 
 RUN		adduser -D -g 'www' -h /home/www www
+RUN		chown -R www:www /etc/nginx
 RUN		rc-update add nginx default
 
-COPY 	/srcs /home/www
-RUN		sh /home/www/nginx-setup.sh
-
 RUN		/etc/init.d/nginx restart
-
-RUN		nginx -t
 
 EXPOSE 	80 443
 

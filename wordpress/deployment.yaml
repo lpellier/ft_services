@@ -17,27 +17,33 @@ spec:
     svc: wordpress
   spec:
    containers:
+    - name: nginx-wp
+      image: nginx
+      imagePullPolicy: Never
+      ports:
+       - name: nginx-wp-port
+         containerPort: 5050
+         protocol: TCP
+      volumeMounts:
+       - name: nginx-conf-wp
+         mountPath: /etc/nginx/nginx.conf
+         subPath: nginx.conf
+       - name: wp-claim
+         mountPath: /home/www/wordpress
     - name: wordpress
-      env:
-        - name: WORDPRESS_DB_HOST
-          value: mysql
-        - name: WORDPRESS_DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-pass
-              key: password
       image: wordpress
       imagePullPolicy: Never
       ports:
-       - name: wp-port
-         containerPort: 5050
-         protocol: TCP
        - name: php-port
          containerPort: 9000
-  #     volumeMounts:
-  #      - name: wordpress-persistent-storage
-  #        mountPath: /home/www/db
-  #  volumes:
-  #   - name: wordpress-persistent-storage
-  #     persistentVolumeClaim:
-  #      claimName: wp-pv-claim
+      volumeMounts:
+       - name: wp-claim
+         mountPath: /home/www/wordpress
+   volumes:
+    - name: nginx-conf-wp
+      configMap:
+       name: nginx-conf-wp
+    - name: wp-claim
+      persistentVolumeClaim:
+       claimName: wp-claim
+

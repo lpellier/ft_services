@@ -4,7 +4,7 @@ VOLUME 	[ "/sys/fs/cgroup" ]
 
 RUN		apk update && apk upgrade
 
-RUN		apk add nginx openrc \
+RUN		apk add openrc \
 		php7 php7-fpm php7-common php7-iconv php7-json \
 		php7-gd php7-curl php7-xml php7-mysqli php7-imap \
 		php7-cgi fcgi php7-pdo php7-pdo_mysql php7-soap php7-phar \
@@ -12,6 +12,7 @@ RUN		apk add nginx openrc \
 		php7-ldap php7-ctype php7-dom curl php7-opcache mysql-client --no-cache
 
 RUN		adduser -D -g 'www' -h /home/www www
+RUN		mkdir /home/www/db
 
 RUN sed -i "s|;listen.owner\s*=\s*nobody|listen.owner = www|g" /etc/php7/php-fpm.d/www.conf
 RUN sed -i "s|;listen.group\s*=\s*nobody|listen.group = www|g" /etc/php7/php-fpm.d/www.conf
@@ -36,21 +37,15 @@ RUN		openrc && touch /run/openrc/softlevel
 
 
 
-RUN		rc-update add nginx default
 RUN		rc-update add php-fpm7 default
 
-COPY 	/srcs /home/www
-RUN		sh /home/www/nginx-setup.sh
-
-RUN		rc-service nginx restart
 RUN		rc-service php-fpm7 restart
 
 RUN		curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN		chmod +x /wp-cli.phar && mv /wp-cli.phar /usr/local/bin/wp
 
+ADD ./srcs/wp-setup.sh ./wp-setup.sh
+
 EXPOSE	5050 9000
 
-CMD 	sh /home/www/wp-setup.sh
-
-# CURRENTLY NOT WORKING - NEEDS TO BE CONNECTED TO MYSQL DATABASE
-# NEED TO START NGINX AND PHP AS CMD -- nginx -g "daemon off;"
+CMD sh	./wp-setup.sh

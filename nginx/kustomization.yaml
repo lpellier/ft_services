@@ -1,6 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+configMapGenerator:
+ - name: nginx-conf-nginx
+   files:
+    - srcs/nginx.conf
+ - name: nginx-index
+   files:
+    - srcs/index.html
+
 resources:
  - service.yaml
  - deployment.yaml

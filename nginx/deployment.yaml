@@ -27,3 +27,17 @@ spec:
        - name: https
          containerPort: 443
          protocol: TCP
+      volumeMounts:
+       - name: nginx-conf-nginx
+         mountPath: /etc/nginx/nginx.conf
+         subPath: nginx.conf
+       - name: nginx-index
+         mountPath: /home/www/index.html
+         subPath: index.html
+   volumes:
+    - name: nginx-conf-nginx
+      configMap:
+       name: nginx-conf-nginx
+    - name: nginx-index
+      configMap:
+       name: nginx-index
