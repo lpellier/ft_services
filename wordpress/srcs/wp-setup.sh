@@ -23,7 +23,7 @@ then
 		--allow-root
 	
 	wp user create bob bob@example.com
-	wp user create connard connard@example.com
+	wp user create jpp jpp@example.com
 	chown -R www:www /home/www/wordpress
 fi
 php-fpm7 -F

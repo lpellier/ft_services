@@ -4,6 +4,7 @@ eval $(minikube docker-env)
 
 docker build -t nginx nginx
 docker build -t mysql mysql
+docker build -t php-fpm7 php-fpm7
 docker build -t phpmyadmin phpmyadmin
 docker build -t wordpress wordpress
 
