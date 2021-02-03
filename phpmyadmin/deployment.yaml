@@ -17,17 +17,35 @@ spec:
     svc: phpmyadmin
   spec:
    containers:
+    - name: nginx
+      image: nginx
+      imagePullPolicy: Never
+      ports:
+       - name: nginx-pma-port
+         containerPort: 5000
+         protocol: TCP
+      volumeMounts:
+       - name: nginx-conf-pma
+         mountPath: /etc/nginx/nginx.conf
+         subPath: nginx.conf
+       - name: pma-volume
+         mountPath: /usr/share/webapps/phpmyadmin
     - name: phpmyadmin
       image: phpmyadmin
       imagePullPolicy: Never
-      ports:
-       - name: pma-port
-         containerPort: 5000
-         protocol: TCP
-  #     volumeMounts:
-  #      - name: wordpress-persistent-storage
-  #        mountPath: /home/www/db
-  #  volumes:
-  #   - name: wordpress-persistent-storage
-  #     persistentVolumeClaim:
-  #      claimName: wp-pv-claim
+      volumeMounts:
+       - name: pma-conf
+         mountPath: /etc/config.inc.php
+         subPath: config.inc.php
+       - name: pma-volume
+         mountPath: /usr/share/webapps/phpmyadmin
+   volumes:
+    - name: nginx-conf-pma
+      configMap:
+       name: nginx-conf-pma
+    - name: pma-conf
+      configMap:
+       name: pma-conf
+    - name: pma-volume
+      persistentVolumeClaim:
+       claimName: pma-claim

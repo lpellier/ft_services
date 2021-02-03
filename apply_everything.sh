@@ -1,5 +1,6 @@
 #!/bin/sh
 
+eval $(minikube docker-env)
 
 docker build -t nginx nginx
 docker build -t mysql mysql
@@ -16,3 +17,5 @@ kubectl apply -k nginx
 kubectl apply -k mysql
 kubectl apply -k phpmyadmin
 kubectl apply -k wordpress
+
+echo "\e[41m\e[93mPlease wait before testing : Wordpress takes at least 10 seconds to setup\e[0m"

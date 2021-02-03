@@ -5,6 +5,8 @@ VOLUME 	[ "/sys/fs/cgroup" ]
 RUN		apk update && apk upgrade
 RUN		apk add nginx openrc openssl openssh --no-cache
 
+RUN		mkdir -p /usr/share/webapps/
+
 RUN		openrc && touch /run/openrc/softlevel
 
 RUN		mkdir -p /etc/ssl/certs && mkdir -p /etc/ssl/private \

@@ -17,7 +17,7 @@ spec:
     svc: wordpress
   spec:
    containers:
-    - name: nginx-wp
+    - name: nginx
       image: nginx
       imagePullPolicy: Never
       ports:
@@ -28,7 +28,7 @@ spec:
        - name: nginx-conf-wp
          mountPath: /etc/nginx/nginx.conf
          subPath: nginx.conf
-       - name: wp-claim
+       - name: wp-volume
          mountPath: /home/www/wordpress
     - name: wordpress
       image: wordpress
@@ -37,13 +37,13 @@ spec:
        - name: php-port
          containerPort: 9000
       volumeMounts:
-       - name: wp-claim
+       - name: wp-volume
          mountPath: /home/www/wordpress
    volumes:
     - name: nginx-conf-wp
       configMap:
        name: nginx-conf-wp
-    - name: wp-claim
+    - name: wp-volume
       persistentVolumeClaim:
        claimName: wp-claim
 
