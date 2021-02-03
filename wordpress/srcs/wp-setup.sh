@@ -1,7 +1,7 @@
 echo "198.143.164.252 api.wordpress.org \
 	198.143.164.250 downloads.wordpress.org" >> /etc/hosts
 
-if [ ! -f /home/www/wordpress/wp-config.php ]
+if [ ! -f /home/www/wordpress/wp-config.php ];
 then
 	wp core download --path=/home/www/wordpress --allow-root
 	sleep 5
