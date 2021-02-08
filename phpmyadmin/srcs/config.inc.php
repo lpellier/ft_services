@@ -16,10 +16,12 @@ $i++;
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['host'] = 'mysql';
 $cfg['Servers'][$i]['port'] = 3306;
+$cfg['Servers'][$i]['user'] = 'wp';
+$cfg['Servers'][$i]['password'] = 'pass';
 
 $cfg['Servers'][$i]['compress'] = false;
 
-$cfg['PmaAbsoluteUri'] = 'http://192.168.49.2/phpmyadmin/';
+$cfg['PmaAbsoluteUri'] = 'http://192.168.49.2:30080/phpmyadmin/';
 
 $cfg['TempDir'] = '/usr/share/webapps/phpmyadmin/tmp';
 
