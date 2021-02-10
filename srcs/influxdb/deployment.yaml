@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: wordpress-deployment
+ labels:
+  app: services
+  svc: wordpress
+spec:
+ selector:
+  matchLabels:
+   app: services
+   svc: wordpress
+ template:
+  metadata:
+   labels:
+    app: services
+    svc: wordpress
+  spec:
+   containers:
+    - name: nginx
+      image: nginx
+      imagePullPolicy: Never
+      ports:
+       - name: nginx-wp-port
+         containerPort: 5050
+         protocol: TCP
+      volumeMounts:
+       - name: nginx-conf-wp
+         mountPath: /etc/nginx/nginx.conf
+         subPath: nginx.conf
+       - name: wp-volume
+         mountPath: /home/www/wordpress
+    - name: wordpress
+      image: wordpress
+      imagePullPolicy: Never
+      ports:
+       - name: php-port
+         containerPort: 9000
+      volumeMounts:
+       - name: wp-volume
+         mountPath: /home/www/wordpress
+   volumes:
+    - name: nginx-conf-wp
+      configMap:
+       name: nginx-conf-wp
+    - name: wp-volume
+      persistentVolumeClaim:
+       claimName: wp-claim
+
