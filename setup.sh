@@ -5,6 +5,6 @@ sleep 5
 minikube delete
 minikube start --driver=docker
 
-./apply_everything.sh
+./srcs/apply_everything.sh
 
 minikube dashboard

@@ -25,6 +25,6 @@ RUN		openrc && touch /run/openrc/softlevel
 RUN		rc-update add vsftpd default
 RUN		rc-service vsftpd restart
 
-EXPOSE		20 21 30000-30010
+EXPOSE		20 21 30100-30103
 
-#CMD		vsftpd /etc/vsftpd/vsftpd.conf
+CMD		vsftpd /etc/vsftpd/vsftpd.conf

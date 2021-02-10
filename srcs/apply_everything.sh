@@ -7,6 +7,7 @@ docker build -t mysql mysql
 docker build -t php-fpm7 php-fpm7
 docker build -t phpmyadmin phpmyadmin
 docker build -t wordpress wordpress
+docker build -t ftps ftps
 
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
@@ -15,6 +16,7 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 
 kubectl apply -k metallb
 kubectl apply -k mysql
+kubectl apply -k ftps
 sleep 5
 kubectl apply -k phpmyadmin
 kubectl apply -k wordpress
