@@ -21,7 +21,7 @@ $cfg['Servers'][$i]['password'] = 'pass';
 
 $cfg['Servers'][$i]['compress'] = false;
 
-$cfg['PmaAbsoluteUri'] = 'http://192.168.49.2:30080/phpmyadmin/';
+#$cfg['PmaAbsoluteUri'] = 'http://192.168.49.2:30080/phpmyadmin';
 
 $cfg['TempDir'] = '/usr/share/webapps/phpmyadmin/tmp';
 
