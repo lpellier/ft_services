@@ -8,6 +8,8 @@ docker build -t php-fpm7 php-fpm7
 docker build -t phpmyadmin phpmyadmin
 docker build -t wordpress wordpress
 docker build -t ftps ftps
+docker build -t influxdb influxdb
+docker build -t grafana grafana
 
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
@@ -22,6 +24,8 @@ kubectl apply -k phpmyadmin
 kubectl apply -k wordpress
 sleep 5
 kubectl apply -k nginx
+kubectl apply -k influxdb
+kubectl apply -k grafana
 
 echo "\e[41m\e[93mPlease wait before testing : Wordpress takes at least 10 seconds to setup\e[0m"
 echo "\e[41m\e[93mNginx may restart up to three times until it finds pma service\e[0m"

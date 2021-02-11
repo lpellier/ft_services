@@ -1,49 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: wordpress-deployment
+ name: influxdb-deployment
  labels:
   app: services
-  svc: wordpress
+  svc: influxdb
 spec:
  selector:
   matchLabels:
    app: services
-   svc: wordpress
+   svc: influxdb
  template:
   metadata:
    labels:
     app: services
-    svc: wordpress
+    svc: influxdb
   spec:
    containers:
-    - name: nginx
-      image: nginx
+    - name: influxdb
+      image: influxdb
       imagePullPolicy: Never
       ports:
-       - name: nginx-wp-port
-         containerPort: 5050
-         protocol: TCP
+       - name: influxdb-port
+         containerPort: 8086
       volumeMounts:
-       - name: nginx-conf-wp
-         mountPath: /etc/nginx/nginx.conf
-         subPath: nginx.conf
-       - name: wp-volume
-         mountPath: /home/www/wordpress
-    - name: wordpress
-      image: wordpress
-      imagePullPolicy: Never
-      ports:
-       - name: php-port
-         containerPort: 9000
-      volumeMounts:
-       - name: wp-volume
-         mountPath: /home/www/wordpress
+       - name: docker-sock
+         mountPath: /var/run/docker.sock
+       - name: influxdb-volume
+         mountPath: /var/lib/influxdb
    volumes:
-    - name: nginx-conf-wp
-      configMap:
-       name: nginx-conf-wp
-    - name: wp-volume
+    - name: docker-sock
+      hostPath:
+       path: /var/run/docker.sock
+    - name: influxdb-volume
       persistentVolumeClaim:
-       claimName: wp-claim
-
+       claimName: influxdb-claim
