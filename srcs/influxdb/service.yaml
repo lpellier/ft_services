@@ -6,7 +6,7 @@ metadata:
   app: services
   svc: influxdb
 spec:
- type: LoadBalancer
+ type: ClusterIP 
  selector:
   app: services
   svc: influxdb
@@ -14,4 +14,3 @@ spec:
   - name: influxdb-port
     protocol: TCP
     port: 8086
-    nodePort: 30886
