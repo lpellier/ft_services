@@ -9,4 +9,4 @@ ADD 	./srcs/wp-setup.sh ./wp-setup.sh
 
 EXPOSE	5050 9000
 
-CMD 	sh	./wp-setup.sh
+CMD 	sh ./wp-setup.sh

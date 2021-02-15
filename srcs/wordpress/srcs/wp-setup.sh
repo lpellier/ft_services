@@ -14,7 +14,7 @@ then
 		--allow-root
 
 	wp core install \
-		--url=192.168.49.2:30050 \
+		--url=192.168.49.24:5050 \
 		--title=Example \
 		--admin_user=wp \
 		--admin_password=pass \
@@ -28,7 +28,7 @@ then
 
 else	
 	wp core install \
-		--url=192.168.49.2:30050 \
+		--url=192.168.49.24:5050 \
 		--title=Example \
 		--admin_user=wp \
 		--admin_password=pass \

@@ -3,7 +3,7 @@ FROM	alpine
 VOLUME 	[ "/sys/fs/cgroup" ]
 
 RUN	apk update && apk upgrade
-RUN	apk add nginx openrc openssl openssh --no-cache
+RUN	apk add nginx openrc openssl --no-cache
 
 RUN	mkdir -p /usr/share/webapps/
 
@@ -22,4 +22,4 @@ RUN	/etc/init.d/nginx restart
 
 EXPOSE 	80 443
 
-CMD	rc-service sshd restart && nginx -g "daemon off;"
+CMD	nginx -g "daemon off;"
