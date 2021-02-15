@@ -9,4 +9,4 @@ secretGenerator:
 resources:
  - service.yaml
  - deployment.yaml
-#  - volume.yaml
+ - volume.yaml

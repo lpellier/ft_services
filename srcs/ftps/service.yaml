@@ -7,6 +7,8 @@ metadata:
   svc: ftps
 spec:
  type: LoadBalancer
+ externalIPs:
+  - 192.168.49.24
  selector:
   app: services
   svc: ftps
@@ -15,25 +17,19 @@ spec:
     protocol: TCP
     port: 20
     targetPort: 20
-    nodePort: 30020
   - name: ftps-port1
     protocol: TCP
     port: 21
     targetPort: 21
-    nodePort: 30021
   - name: ftps-port2
     protocol: TCP
     port: 30100
-    nodePort: 30100
   - name: ftps-port3
     protocol: TCP
     port: 30101
-    nodePort: 30101
   - name: ftps-port4
     protocol: TCP
     port: 30102
-    nodePort: 30102
   - name: ftps-port5
     protocol: TCP
     port: 30103
-    nodePort: 30103

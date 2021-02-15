@@ -15,12 +15,14 @@ docker build -t wordpress srcs/wordpress
 docker build -t ftps srcs/ftps
 docker build -t influxdb srcs/influxdb
 docker build -t grafana srcs/grafana
+docker build -t nginx srcs/nginx
 
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
 # On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
+docker build -t nginx srcs/nginx
 kubectl apply -k srcs/metallb
 kubectl apply -k srcs/mysql
 kubectl apply -k srcs/ftps
@@ -37,4 +39,4 @@ echo "\e[41m\e[93mNginx may restart up to three times until it finds pma service
 
 kubectl get pods -w
 
-#minikube dashboard
+minikube dashboard

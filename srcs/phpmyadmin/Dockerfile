@@ -1,11 +1,11 @@
-FROM php-fpm7
+FROM	php-fpm7
 
-RUN		apk update && apk upgrade
+RUN	apk update && apk upgrade
 
 
-COPY srcs/pma-setup.sh /
+COPY 	srcs/pma-setup.sh /
 
 
 EXPOSE	5000
 
-CMD		chmod +x /pma-setup.sh && ./pma-setup.sh
+CMD	chmod +x /pma-setup.sh && ./pma-setup.sh

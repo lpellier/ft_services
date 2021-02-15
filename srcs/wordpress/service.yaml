@@ -6,6 +6,8 @@ metadata:
   app: services
   svc: wordpress
 spec:
+ externalIPs:
+  - 192.168.49.24
  type: LoadBalancer
  selector:
   app: services
@@ -14,4 +16,3 @@ spec:
   - name: wp-port
     protocol: TCP
     port: 5050
-    nodePort: 30050

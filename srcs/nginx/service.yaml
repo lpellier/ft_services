@@ -6,6 +6,8 @@ metadata:
   app: services
   svc: nginx
 spec:
+ externalIPs:
+  - 192.168.49.24
  selector:
   app: services
   svc: nginx
@@ -13,9 +15,7 @@ spec:
   - name: http
     protocol: TCP
     port: 80
-    nodePort: 30080
   - name: https
     protocol: TCP
     port: 443
-    nodePort: 30443
  type: LoadBalancer
