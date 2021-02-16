@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
  name: wordpress
+ annotations:
+  metallb.universe.tf/allow-shared-ip: 192.168.49.24-192.168.49.24
  labels:
   app: services
   svc: wordpress
 spec:
- externalIPs:
-  - 192.168.49.24
  type: LoadBalancer
  selector:
   app: services

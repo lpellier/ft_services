@@ -13,27 +13,16 @@ then
 		--path=/home/www/wordpress/ \
 		--allow-root
 
-	wp core install \
-		--url=192.168.49.24:5050 \
-		--title=Example \
-		--admin_user=wp \
-		--admin_password=pass \
-		--admin_email=info@example.com \
-		--path=/home/www/wordpress/ \
-		--allow-root
-
-	wp user create bob bob@example.com
-	wp user create jpp jpp@example.com
-	chown -R www:www /home/www/wordpress
-
-else	
-	wp core install \
-		--url=192.168.49.24:5050 \
-		--title=Example \
-		--admin_user=wp \
-		--admin_password=pass \
-		--admin_email=info@example.com \
-		--path=/home/www/wordpress/ \
-		--allow-root
 fi
+wp core install \
+	--url=192.168.49.24:5050 \
+	--title=Example \
+	--admin_user=wp \
+	--admin_password=pass \
+	--admin_email=info@example.com \
+	--path=/home/www/wordpress/ \
+	--allow-root
+wp user create bob bob@example.com --role=author --user_pass=pass --path=/home/www/wordpress --allow-root
+wp user create jpp jpp@example.com --role=author --user_pass=pass --path=/home/www/wordpress --allow-root
+chown -R www:www /home/www/wordpress
 php-fpm7 -F
