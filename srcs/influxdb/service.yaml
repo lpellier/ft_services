@@ -6,8 +6,6 @@ metadata:
   app: services
   svc: influxdb
 spec:
- externalIPs:
-  - 192.168.49.24
  type: ClusterIP 
  selector:
   app: services

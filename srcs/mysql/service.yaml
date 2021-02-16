@@ -6,8 +6,6 @@ metadata:
   app: services
   svc: mysql
 spec:
- externalIPs:
-  - 192.168.49.24
  selector:
   app: services
   svc: mysql
