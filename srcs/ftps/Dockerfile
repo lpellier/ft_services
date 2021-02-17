@@ -17,14 +17,11 @@ RUN             mkdir -p /etc/ssl/certs && mkdir -p /etc/ssl/private \
 
 ADD		./srcs /home/www
 
-RUN		mv /home/www/vsftpd.conf /etc/vsftpd/vsftpd.conf
-RUN		mv /home/www/vsftpd.userlist /etc/vsftpd/vsftpd.userlist
-
 RUN		openrc && touch /run/openrc/softlevel
 
 RUN		rc-update add vsftpd default
 RUN		rc-service vsftpd restart
 
-EXPOSE		20 21 30100-30103
+EXPOSE		20 21 30100-30104
 
-CMD		vsftpd /etc/vsftpd/vsftpd.conf
+CMD		bash init.sh

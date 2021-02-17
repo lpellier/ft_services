@@ -14,7 +14,7 @@ userlist_deny=NO
 
 seccomp_sandbox=NO
 pasv_min_port=30100
-pasv_max_port=30103
+pasv_max_port=30104
 
 ssl_enable=YES
 rsa_cert_file=/etc/ssl/certs/localhost.crt

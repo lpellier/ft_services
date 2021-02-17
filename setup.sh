@@ -14,19 +14,17 @@ kubectl get configmap kube-proxy -n kube-system -o yaml |sed -e "s/strictARP: fa
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
 
-docker build -t nginx srcs/nginx
-docker build -t mysql srcs/mysql
-docker build -t php-fpm7 srcs/php-fpm7
-docker build -t phpmyadmin srcs/phpmyadmin
-docker build -t wordpress srcs/wordpress
-docker build -t ftps srcs/ftps
-docker build -t influxdb srcs/influxdb
-docker build -t grafana srcs/grafana
-docker build -t nginx srcs/nginx
+docker build -t nginx srcs/nginx --network=host
+docker build -t mysql srcs/mysql --network=host
+docker build -t php-fpm7 srcs/php-fpm7 --network=host
+docker build -t phpmyadmin srcs/phpmyadmin --network=host
+docker build -t wordpress srcs/wordpress --network=host
+docker build -t ftps srcs/ftps --network=host
+docker build -t influxdb srcs/influxdb --network=host
+docker build -t grafana srcs/grafana --network=host
 # On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
-docker build -t nginx srcs/nginx
 kubectl apply -k srcs/metallb
 kubectl apply -k srcs/mysql
 kubectl apply -k srcs/ftps

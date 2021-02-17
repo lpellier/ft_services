@@ -21,15 +21,18 @@ spec:
     protocol: TCP
     port: 21
     targetPort: 21
-  - name: ftps-port2
-    protocol: TCP
-    port: 30100
-  - name: ftps-port3
-    protocol: TCP
+  - name: port-ftps-30100
+    port: 30100 
+    targetPort: 30100
+  - name: port-ftps-30101
     port: 30101
-  - name: ftps-port4
-    protocol: TCP
+    targetPort: 30101
+  - name: port-ftps-30102
     port: 30102
-  - name: ftps-port5
-    protocol: TCP
+    targetPort: 30102
+  - name: port-ftps-30103
     port: 30103
+    targetPort: 30103
+  - name: port-ftps-30104
+    port: 30104
+    targetPort: 30104
