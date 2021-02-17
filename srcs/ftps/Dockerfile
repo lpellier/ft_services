@@ -15,7 +15,7 @@ RUN             mkdir -p /etc/ssl/certs && mkdir -p /etc/ssl/private \
                 -subj '/C=FR/ST=75/L=Paris/O=42/CN=localhost' -keyout \
                 /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt
 
-ADD		./srcs /home/www
+ADD		./srcs / 
 
 RUN		openrc && touch /run/openrc/softlevel
 
@@ -24,4 +24,4 @@ RUN		rc-service vsftpd restart
 
 EXPOSE		20 21 30100-30104
 
-CMD		bash init.sh
+CMD		sh init.sh

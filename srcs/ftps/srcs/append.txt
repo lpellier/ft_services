@@ -3,6 +3,9 @@ local_enable=YES
 pasv_enable=YES
 write_enable=YES
 
+force_local_logins_ssl=NO
+force_local_data_ssl=NO
+
 xferlog_file=/var/log/vsftpd.log
 vsftpd_log_file=/var/log/log.log
 
