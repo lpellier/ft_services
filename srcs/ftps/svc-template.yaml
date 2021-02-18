@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: ftps
+ annotations:
+  metallb.universe.tf/allow-shared-ip: kub-ip
+ labels:
+  app: services
+  svc: ftps
+spec:
+ type: LoadBalancer
+ selector:
+  app: services
+  svc: ftps
+ ports:
+  - name: ftps-port0
+    protocol: TCP
+    port: 20
+    targetPort: 20
+  - name: ftps-port1
+    protocol: TCP
+    port: 21
+    targetPort: 21
+  - name: port-ftps-30100
+    port: 30100 
+    targetPort: 30100
+  - name: port-ftps-30101
+    port: 30101
+    targetPort: 30101
+  - name: port-ftps-30102
+    port: 30102
+    targetPort: 30102
+  - name: port-ftps-30103
+    port: 30103
+    targetPort: 30103
+  - name: port-ftps-30104
+    port: 30104
+    targetPort: 30104

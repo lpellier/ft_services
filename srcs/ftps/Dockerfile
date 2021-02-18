@@ -20,6 +20,8 @@ ADD		./srcs /
 RUN		chmod 755 /home
 RUN		chmod 755 /home/www
 
+RUN		mv /test.txt /home/www
+
 RUN		openrc && touch /run/openrc/softlevel
 
 RUN		rc-update add vsftpd default
