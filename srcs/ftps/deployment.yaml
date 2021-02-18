@@ -20,6 +20,12 @@ spec:
     - name: ftps
       image: ftps
       imagePullPolicy: Never
+      env:
+       - name: KUB_IP
+         valueFrom:
+          secretKeyRef:
+           name: kub-ip
+           key: kub-ip
       ports:
        - containerPort: 20
        - containerPort: 21

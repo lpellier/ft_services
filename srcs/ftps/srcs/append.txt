@@ -12,8 +12,6 @@ force_local_data_ssl=NO
 xferlog_file=/var/log/vsftpd.log
 vsftpd_log_file=/var/log/log.log
 
-pasv_address=192.168.49.24
-
 userlist_enable=YES
 userlist_file=/etc/vsftpd/vsftpd.userlist
 userlist_deny=NO

@@ -6,6 +6,8 @@ minikube delete
 minikube start --driver=docker
 
 eval $(minikube docker-env)
+KUB_IP=$(minikube ip | cut -c -11)24
+kubectl create secret generic kub-ip --from-literal=kub-ip=$KUB_IP
 
 minikube addons enable dashboard
 minikube addons enable metrics-server
@@ -25,7 +27,11 @@ docker build -t grafana srcs/grafana --network=host
 # On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
-kubectl apply -k srcs/metallb
+#echo $(kubectl get secret kub-ip -o yaml |grep kub-ip |cut -c 10- |head -n1) | base64 --decode
+
+sed "s/kub-ip/$(echo $(kubectl get secret kub-ip -o yaml |grep kub-ip |cut -c 10- |head -n1) |base64 --decode)-$(echo $(kubectl get secret kub-ip -o yaml |grep kub-ip |cut -c 10- |head -n1) |base64 --decode)/" srcs/metallb/template-config.yaml > srcs/metallb/metallb-config.yaml
+
+kubectl apply -f srcs/metallb/metallb-config.yaml
 kubectl apply -k srcs/mysql
 kubectl apply -k srcs/ftps
 sleep 5

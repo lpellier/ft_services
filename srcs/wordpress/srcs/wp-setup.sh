@@ -15,7 +15,7 @@ then
 
 fi
 wp core install \
-	--url=192.168.49.24:5050 \
+	--url=$KUB_IP:5050 \
 	--title=Example \
 	--admin_user=wp \
 	--admin_password=pass \
