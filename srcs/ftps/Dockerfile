@@ -17,6 +17,9 @@ RUN             mkdir -p /etc/ssl/certs && mkdir -p /etc/ssl/private \
 
 ADD		./srcs / 
 
+RUN		chmod 755 /home
+RUN		chmod 755 /home/www
+
 RUN		openrc && touch /run/openrc/softlevel
 
 RUN		rc-update add vsftpd default
