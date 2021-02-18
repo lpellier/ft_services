@@ -1,0 +1,38 @@
+curl -I (i) http://ip/
+Nginx
+- Essayer d'accéder en http (port 80) et verifiez que vous êtes bien redirigé automatiquement en https (port 443).
+Ensuite, exécutez la commande "curl -I (i) http://ip/" et verifiez que le code de retour est un
+"301 Moved Permanently" et que la ligne "Location" est bien la même IP mais en https.
+La page affichée n'a pas d'importance, tant que ce n'est pas une erreur web (404, 503 etc).
+Le certificat ssl ne doit pas obligatoirement être reconnu, une erreur de certificat en https est normale.
+Vérifiez que nginx renvoit bien sur /wordpress avec un redirect 307 et sur /phpmyadmin avec un reverse proxy.
+Si un des points ci-dessus n'est pas correct, la correction s'arrête ici.
+Serveur FTP(S)
+- Vérifiez que le serveur FTPS soit bien accessible sur le port 21. Assurez vous
+que ce soit bien un serveur FTPS (s pour secure), et non un serveur FTP basique.
+Si le serveur FTPS ne fonctionne pas comme il devrait, la correction s'arrête ici.
+- Vérifier que vous pouvez uploader/télécharger plusieurs fichiers sans erreurs.
+Hello Word(Press), MySQL and PhpMyAdmin
+- Vérifiez que WordPress se trouve bien sur le port 5050. Connectez vous avec le compte administrateur,
+verifier la présence de plusieurs autres utilisateurs, puis laissez un commentaire sous une publication.
+Assurez vous que celui-ci soit bien ajouté dans la base de données.
+Pour ce faire, vous pouvez vous rendre sur PhpMyAdmin, qui doit être accessible sur le port 5000.
+et de vérifier les entrées en DB (table "wp_comments").
+Wordpress et PhpMyadmin doivent avoir leur propre serveur nginx.
+La DB doit OBLIGATOIREMENT persister en cas de problème. Pour ce faire, je vous invite à supprimer le container MySQL via la dashboard Kubernetes.
+Il doit se recréer automatiquement, ensuite vérifiez que la base de données contienne toujours votre commentaire.
+Si quelque chose ne fonctionne pas comme prévu, la correction s'arrête ici.
+Grafana et InfluxDB
+- Vérifiez que grafana soit bien accessible sur le port 3000. Une fois fait connectez vous y.
+Vérifiez que le grafana permet bien de monitorer tous les containers. Pour ce faire regardez la liste des dashboard,
+vérifiez que tous soient bien présents et regardez les un à un.
+Comme pour MySQL, après avoir supprimé le container InfluxDB vérifiez que les données antérieure à la suppression sont toujours présentes dans Grafana.
+Si quelque chose ne fonctionne pas comme prévu, la correction s'arrête ici.
+Persistance !
+- Vérifier qu'en cas de crash/arret d'un des services, le container associé se relance correctement.
+Pour ce faire, utilisez la commande "kubectl exec deploy/SERVICE -- pkill APP" (en remplaçant SERVICE et APP bien entendu).
+Arrêtez les containers web (generalement l'APP nginx ou php-fpm) et l'APP grafana pour ce dernier.
+Arrêtez le serveur ftps (généralement l'APP vsftpd)
+Arrêtez les APP mysqld et influxd pour les bases de données correspondante (en prenant soit de revérifier la persistance des données).
+Si un container n'a pas redémarré après plusieurs minutes, si des données de MySQL ou InfluxDB ont été perdues
+ou si un service s'est mal relancé (en particulier le ftps), la correction s'arrête ici.

@@ -24,4 +24,4 @@ RUN		rc-service vsftpd restart
 
 EXPOSE		20 21 30100-30104
 
-CMD		sh init.sh
+CMD		sh vsftpd-setup.sh
