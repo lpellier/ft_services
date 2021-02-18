@@ -12,6 +12,7 @@ kubectl create secret generic kub-ip --from-literal=kub-ip=$KUB_IP
 minikube addons enable dashboard
 minikube addons enable metrics-server
 minikube addons enable metallb
+
 kubectl get configmap kube-proxy -n kube-system -o yaml |sed -e "s/strictARP: false/strictARP: true/" |kubectl apply -f - -n kube-system
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
@@ -24,6 +25,7 @@ docker build -t wordpress srcs/wordpress --network=host
 docker build -t ftps srcs/ftps --network=host
 docker build -t influxdb srcs/influxdb --network=host
 docker build -t grafana srcs/grafana --network=host
+
 # On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 

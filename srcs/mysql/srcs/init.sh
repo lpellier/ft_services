@@ -8,4 +8,4 @@ sleep 2
 mysql < /home/www/create_pma_tables.sql && \
 mysql < /home/www/mysql_secure_installation.sql
 
-tail -f /dev/null
+wait %+
