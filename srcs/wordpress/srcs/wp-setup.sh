@@ -1,6 +1,8 @@
 echo "198.143.164.252 api.wordpress.org \
 	198.143.164.250 downloads.wordpress.org" >> /etc/hosts
 
+sleep 15
+
 if [ ! -f /home/www/wordpress/wp-config.php ]
 then
 	wp core download --path=/home/www/wordpress --allow-root
@@ -15,7 +17,7 @@ then
 
 fi
 wp core install \
-	--url=$KUB_IP:5050 \
+	--url=192.168.49.24:5050 \
 	--title=Example \
 	--admin_user=wp \
 	--admin_password=pass \

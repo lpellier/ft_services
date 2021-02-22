@@ -33,12 +33,6 @@ spec:
     - name: wordpress
       image: wordpress
       imagePullPolicy: Never
-      env:
-       - name: KUB_IP
-         valueFrom:
-          secretKeyRef:
-           name: kub-ip
-           key: kub-ip
       ports:
        - name: php-port
          containerPort: 9000

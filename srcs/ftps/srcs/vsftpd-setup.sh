@@ -1,4 +1,4 @@
-echo "pasv_address=$KUB_IP" >> append.txt 
+echo "pasv_address=192.168.49.24" >> append.txt 
 cat append.txt >> /etc/vsftpd/vsftpd.conf
 echo "www" >> /etc/vsftpd/vsftpd.userlist
 
